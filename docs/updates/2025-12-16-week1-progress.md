@@ -1,4 +1,4 @@
-# #vibium week 1 progress: we're building!
+# week 1 progress: we're building!
 
 here's where we're at.
 
