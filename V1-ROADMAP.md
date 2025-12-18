@@ -377,6 +377,16 @@ Use goroutines for concurrent message routing.
 ```bash
 # Script that connects, navigates, screenshots, disconnects
 # Verify screenshot returned, Chrome exits after disconnect
+
+# Example flow:
+Connected to proxy
+> session.status
+> browsingContext.getTree
+> browsingContext.navigate → https://example.com
+> browsingContext.captureScreenshot
+< Screenshot received! Base64 length: 20736
+Disconnected from proxy
+[router] Browser session closed for client 1
 ```
 
 ---
