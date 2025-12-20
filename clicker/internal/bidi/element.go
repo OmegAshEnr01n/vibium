@@ -44,7 +44,7 @@ func (c *Client) FindElement(context, selector string) (*ElementInfo, error) {
 			if (!el) return null;
 			const rect = el.getBoundingClientRect();
 			return JSON.stringify({
-				tag: el.tagName,
+				tag: el.tagName.toLowerCase(),
 				text: (el.textContent || '').trim().substring(0, 100),
 				box: {
 					x: rect.x,

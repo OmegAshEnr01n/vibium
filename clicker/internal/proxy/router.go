@@ -388,7 +388,7 @@ func (r *Router) waitForElement(session *BrowserSession, context, selector strin
 			if (!el) return null;
 			const rect = el.getBoundingClientRect();
 			return JSON.stringify({
-				tag: el.tagName,
+				tag: el.tagName.toLowerCase(),
 				text: (el.textContent || '').trim().substring(0, 100),
 				box: {
 					x: rect.x,
