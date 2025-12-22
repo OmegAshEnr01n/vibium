@@ -2,7 +2,10 @@
 
 ## Development Environment
 
-We recommend developing inside a macOS VM to limit the blast radius of AI-assisted tools like Claude Code. See [docs/local-dev-setup.md](docs/local-dev-setup.md) for complete VM setup instructions.
+We recommend developing inside a VM to limit the blast radius of AI-assisted tools like Claude Code. See the setup guide for your platform:
+- [macOS](docs/local-dev-setup-mac.md)
+- [Linux x86](docs/local-dev-setup-x86-linux.md)
+- [Windows x86](docs/local-dev-setup-x86-windows.md)
 
 If you prefer to develop directly on your host machine, follow the steps below.
 
@@ -128,4 +131,4 @@ Example:
 - **Team members**: push directly to `VibiumDev/vibium`
 - **External contributors**: fork the repo, push to your fork, then open a PR to `VibiumDev/vibium`
 
-See [docs/local-dev-setup.md](docs/local-dev-setup.md) for details on the fork-based workflow.
+See [docs/local-dev-setup-mac.md](docs/local-dev-setup-mac.md) for details on the fork-based workflow.

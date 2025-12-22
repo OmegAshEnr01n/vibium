@@ -1,4 +1,8 @@
-# Setting Up Local Vibium Dev
+# Setting Up Local Vibium Dev (macOS)
+
+This doc covers macOS VM setup on a Mac host. For other platforms, see:
+- [Linux x86 Setup](local-dev-setup-x86-linux.md) — for Linux VM on x86 Linux host
+- [Windows x86 Setup](local-dev-setup-x86-windows.md) — for Windows VM on x86 Windows host
 
 ---
 
@@ -294,3 +298,71 @@ Replace `yourusername` with your VM username and `192.168.64.4` with the IP from
 4. Navigate to `~/Projects/vibium`
 
 Now you can edit files on the VM from Zed on your host.
+
+---
+
+## Linux ARM VM (for testing linux/arm64 builds)
+
+If you're on Apple Silicon and need to test linux/arm64 builds, you can run an Ubuntu ARM VM alongside your macOS VM.
+
+### Create Linux VM in UTM
+
+1. Open UTM
+2. Create New → Virtualize → Linux
+3. Download Ubuntu 24.04 LTS ARM64 ISO:
+   - https://ubuntu.com/download/server (choose ARM64)
+4. Configure VM:
+   - Memory: 4GB minimum (8GB recommended)
+   - CPU: 4 cores
+   - Storage: 32GB minimum
+5. Boot and install Ubuntu Server (minimal install is fine)
+
+### Post-Install Setup
+
+SSH into the Linux VM and run:
+
+```bash
+# Update system
+sudo apt update && sudo apt upgrade -y
+
+# Install dev tools
+sudo apt install -y git curl wget build-essential
+
+# Install Go
+wget https://go.dev/dl/go1.23.4.linux-arm64.tar.gz
+sudo tar -C /usr/local -xzf go1.23.4.linux-arm64.tar.gz
+echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+source ~/.bashrc
+
+# Install Node.js (via nvm)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+
+# Install other tools
+sudo apt install -y ripgrep jq
+```
+
+### Test linux/arm64 Build
+
+```bash
+# Clone repo (or copy build artifacts)
+git clone https://github.com/VibiumDev/vibium.git
+cd vibium/clicker
+
+# Build and test
+go build -o bin/clicker ./cmd/clicker
+./bin/clicker --version
+./bin/clicker launch-test
+```
+
+### Get VM IP for SSH Access
+
+```bash
+ip addr show | grep inet
+```
+
+From your Mac host:
+```bash
+ssh yourusername@<vm-ip>
+```

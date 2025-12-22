@@ -111,7 +111,9 @@ vibium/
 │       └── server.test.js
 │
 ├── docs/
-│   ├── local-dev-setup.md                # VM development setup
+│   ├── local-dev-setup-mac.md            # VM development setup (macOS)
+│   ├── local-dev-setup-x86-linux.md      # VM development setup (x86 Linux)
+│   ├── local-dev-setup-x86-windows.md    # VM development setup (x86 Windows)
 │   ├── explanation/
 │   │   ├── actionability.md              # How actionability works
 │   │   └── process-cleanup.md            # Process management docs
